@@ -42,7 +42,7 @@ function SkillData() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-background text-foreground transition-colors">
-            <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors mt-8 bi">
+            <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors">
             <h1 className="text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 mb-2 text-center">Profile Details</h1>
             <p className="text-secondary mb-6 text-center">Fill in your information to get started</p>
             <Form {...form}>
