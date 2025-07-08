@@ -6,9 +6,12 @@ import { CiSun, CiDark } from "react-icons/ci";
 
 
 function Navbar() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    return savedTheme ? savedTheme === "dark" : true; // default to dark
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme");
+      return savedTheme ? savedTheme === "dark" : true; // default to dark
+    }
+    return true; // default to dark on server
   });
 
   useEffect(() => {
