@@ -21,6 +21,7 @@ import { ImProfile } from "react-icons/im";
 import { useState } from "react"
 import toast, { Toaster } from 'react-hot-toast';
 import Footer from "@/components/FooterNav"
+import { motion } from 'framer-motion'
 
 // Define the validation schema using Zod
 const formSchema = z.object({
@@ -101,7 +102,13 @@ function SkillData() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-background text-foreground transition-colors">
+        <motion.div
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
+            id="skill-data"
+            className="flex flex-col items-center justify-center min-h-screen px-4 bg-background text-foreground transition-colors">
             <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors mt-8">
                 <h1 className="flex items-center justify-center gap-2 text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 text-center mb-6">
                     <ImProfile /> <span>Profile Details</span>
@@ -280,7 +287,7 @@ function SkillData() {
 
             <Footer />
 
-        </div>
+        </motion.div>
     )
 }
 
