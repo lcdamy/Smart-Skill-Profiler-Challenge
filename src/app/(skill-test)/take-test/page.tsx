@@ -35,7 +35,7 @@ function SkillData() {
 
     function onSubmit(data: z.infer<typeof formSchema>) {
         // Handle form submission logic here
-        console.log("Form submitted:", data);
+        console.log(JSON.stringify(data));
         // You can send the data to an API or perform any other action
         alert("Form submitted successfully!");
     }
