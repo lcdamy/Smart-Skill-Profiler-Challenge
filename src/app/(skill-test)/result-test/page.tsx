@@ -7,15 +7,19 @@ import { Separator } from "@/components/ui/separator"
 
 
 function ResultTest() {
+    // Get the summary and suggested skills from the result store
     const summary = useResultStore((state) => state.summary);
-    const suggested_skills = useResultStore((state) => state.suggested_skills)
+    const suggested_skills = useResultStore((state) => state.suggested_skills);
+
+    // Set the current location in the footer store
     const setLocation = useFooterStore((state) => state.setLocation);
     setLocation("result-test");
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-background text-foreground transition-colors">
             <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors mt-8">
                 <h1 className="flex items-center justify-center gap-2 text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 text-center mb-6">
-                    <CgProfile />  <span>Profile Analysis <span className="text-base font-normal text-indigo-500 dark:text-indigo-300">(Test Result)</span></span>
+                    <CgProfile />  <span>Profile Analysis <span className="text-base font-normal text-indigo-500 dark:text-indigo-300">(Cohere-AI Result)</span></span>
                 </h1>
                 <h3 className="font-semibold text-xl mb-2.5">
                     About:
@@ -32,7 +36,10 @@ function ResultTest() {
                 <Separator />
                 <ol className="pl-6 text-sm text-secondary leading-relaxed mt-4 list-decimal">
                     {suggested_skills.map((skill, idx) => (
-                        <li key={idx} className="mb-2.5">
+                        <li
+                            key={idx}
+                            className="mb-2.5 transition-colors duration-500 hover:text-black dark:hover:text-white hover:underline text-gray-700 dark:text-gray-200"
+                        >
                             {skill}
                         </li>
                     ))}

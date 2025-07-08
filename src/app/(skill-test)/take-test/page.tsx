@@ -22,6 +22,7 @@ import { useState } from "react"
 import toast, { Toaster } from 'react-hot-toast';
 import Footer from "@/components/FooterNav"
 
+// Define the validation schema using Zod
 const formSchema = z.object({
     fullnames: z.string().min(1, "Full names are required"),
     email: z.string().email("Invalid email address"),
@@ -31,14 +32,19 @@ const formSchema = z.object({
     about: z.string().min(1, "About you is required").max(300, "About you must be 300 characters or less"),
 })
 
+// Main component for the profile form
 function SkillData() {
+    // State for submit button loading
     const [isSubmitting, setIsSubmitting] = useState(false)
+    // Store actions for result and footer
     const setResult = useResultStore((state) => state.setResult)
     const clearResult = useResultStore((state) => state.clearResult)
     const setLocation = useFooterStore((state) => state.setLocation)
+    // Set the current location for the footer
     setLocation("take-test")
     const router = useRouter()
 
+    // Initialize the form with validation and default values
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -49,7 +55,9 @@ function SkillData() {
         },
     })
 
+    // Handle form submission
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
+        // Validate the skills field before submitting
         const isValid = await form.trigger("skills")
         if (!isValid) return
 
@@ -57,6 +65,7 @@ function SkillData() {
         clearResult()
 
         try {
+            // Send profile data to the serverless function
             const response = await fetch("/.netlify/functions/profileFeedback", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -68,6 +77,7 @@ function SkillData() {
                 throw new Error(errorText || "Failed to submit profile")
             }
 
+            // Parse the response and update the result store
             const responseData = await response.json()
             let result
             try {
@@ -82,6 +92,7 @@ function SkillData() {
             form.reset()
             router.push("/result-test")
         } catch (error) {
+            // Handle errors and show a toast notification
             console.error("Error calling API:", error)
             toast.error("An unexpected error occurred")
         } finally {
@@ -93,7 +104,7 @@ function SkillData() {
         <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-background text-foreground transition-colors">
             <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors mt-8">
                 <h1 className="flex items-center justify-center gap-2 text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 text-center mb-6">
-                   <ImProfile /> <span>Profile Details</span>
+                    <ImProfile /> <span>Profile Details</span>
                 </h1>
                 <div className="mb-6 text-center">
                     <p className="text-secondary text-xs">
@@ -266,8 +277,8 @@ function SkillData() {
                     <Toaster position="top-right" />
                 </div>
             </div>
-            
-            <Footer  />
+
+            <Footer />
 
         </div>
     )
