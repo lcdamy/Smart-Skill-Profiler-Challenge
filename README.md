@@ -76,4 +76,4 @@ smart-skill-profiler/
 
 ## 👥 Contributors
 
-- [Your Name](https://www.linkedin.com/in/your-profile/)
+- [lcdamy](https://www.linkedin.com/in/pierre-damien-murindangabo-cyuzuzo-709b53151/)
