@@ -27,7 +27,8 @@ function Navbar() {
   const toggleTheme = () => {
     setIsDarkMode((prev) => !prev);
   };
-  return (<nav className="flex justify-between items-center h-20 max-w-6xl mx-auto px-6 transition-colors duration-300">
+  return (
+  <nav className="flex justify-between items-center h-20 max-w-6xl mx-auto px-6 transition-colors duration-300">
     <Link href="/" className="hover:no-underline">
       <div className="flex items-center gap-2 select-none cursor-pointer">
         <span

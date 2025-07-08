@@ -47,6 +47,68 @@ button:hover {
     background-color: #0047A3; /* Darker blue on hover for light mode */
 }
 
+/* Secondary button styles */
+.button-secondary {
+    color: #005FCC;
+    background-color: #F1F5F9; /* Softer, more neutral light bg */
+    border: 1px solid #B6D4F7;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.button-secondary:hover {
+    background-color: #E0E7EF; /* Slightly darker on hover */
+    color: #003366;
+    border-color: #90C2E7;
+}
+
+/* Dark mode for secondary button */
+.dark .button-secondary {
+    color: #60A5FA; /* Lighter blue for dark mode */
+    background-color: #23272F; /* Neutral dark bg, not too harsh */
+    border: 1px solid #334155;
+}
+
+.dark .button-secondary:hover {
+    background-color: #1A1D23; /* Slightly darker on hover */
+    color: #93C5FD; /* Even lighter blue */
+    border-color: #1E40AF;
+}
+
+/* Tertiary button styles */
+.button-tertiary {
+    color: #005FCC;
+    background-color: transparent;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.button-tertiary:hover {
+    background-color: #F1F5F9; /* Subtle highlight on hover */
+    color: #003366;
+    border-color: #B6D4F7;
+}
+
+/* Dark mode for tertiary button */
+.dark .button-tertiary {
+    color: #60A5FA;
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+.dark .button-tertiary:hover {
+    background-color: #1E293B; /* Match dark secondary button bg */
+    color: #60A5FA; /* Lighter blue on hover */
+    border-color: #334155;
+}
+
 .container-surface{
     background-color: #ffffff;
 }

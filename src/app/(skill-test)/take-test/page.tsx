@@ -16,9 +16,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
 import { useResultStore } from "@/store/resultStore"
-import { MdKeyboardBackspace } from "react-icons/md"
+import { useFooterStore } from "@/store/footerStore"
+import { ImProfile } from "react-icons/im";
 import { useState } from "react"
 import toast, { Toaster } from 'react-hot-toast';
+import Footer from "@/components/FooterNav"
 
 const formSchema = z.object({
     fullnames: z.string().min(1, "Full names are required"),
@@ -33,6 +35,8 @@ function SkillData() {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const setResult = useResultStore((state) => state.setResult)
     const clearResult = useResultStore((state) => state.clearResult)
+    const setLocation = useFooterStore((state) => state.setLocation)
+    setLocation("take-test")
     const router = useRouter()
 
     const form = useForm({
@@ -87,12 +91,12 @@ function SkillData() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-background text-foreground transition-colors">
-            <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors">
-                <h1 className="text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 mb-2 text-center">
-                    Profile Details
+            <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors mt-8">
+                <h1 className="flex items-center justify-center gap-2 text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 text-center mb-6">
+                   <ImProfile /> <span>Profile Details</span>
                 </h1>
                 <div className="mb-6 text-center">
-                    <p className="text-secondary">
+                    <p className="text-secondary text-xs">
                         Please provide your profile details below. Your information helps us generate a tailored skill profile and deliver personalized feedback to support your growth.
                     </p>
                 </div>
@@ -107,7 +111,7 @@ function SkillData() {
                                     <FormControl>
                                         <Input
                                             placeholder="John Doe"
-                                            className="focus:ring-2 focus:ring-indigo-400 dark:bg-[#23272f] dark:text-foreground"
+                                            className="focus:ring-2 dark:bg-[#23272f] dark:text-foreground"
                                             {...field}
                                         />
                                     </FormControl>
@@ -129,7 +133,7 @@ function SkillData() {
                                         <Input
                                             type="email"
                                             placeholder="you@example.com"
-                                            className="focus:ring-2 focus:ring-indigo-400 dark:bg-[#23272f] dark:text-foreground"
+                                            className="focus:ring-2 dark:bg-[#23272f] dark:text-foreground"
                                             {...field}
                                         />
                                     </FormControl>
@@ -153,12 +157,11 @@ function SkillData() {
                                                 {field.value.map((skill: string, idx: number) => (
                                                     <span
                                                         key={idx}
-                                                        className="flex items-center bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 px-3 py-1 rounded-full text-sm shadow transition-all"
+                                                        className="flex items-center bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 pl-3 pr-1 py-1 rounded-full text-sm shadow transition-all"
                                                     >
                                                         {skill}
-                                                        <button
-                                                            type="button"
-                                                            className="ml-2 text-indigo-500 dark:text-indigo-300 hover:text-red-500 dark:hover:text-red-400 focus:outline-none"
+                                                        <span
+                                                            className="ml-2 rounded-full p-1 cursor-pointer bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 focus:outline-none"
                                                             onClick={() => {
                                                                 const newSkills = field.value.filter((_, i) => i !== idx)
                                                                 field.onChange(newSkills)
@@ -166,16 +169,16 @@ function SkillData() {
                                                             }}
                                                             aria-label={`Remove ${skill}`}
                                                         >
-                                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                                            <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                                             </svg>
-                                                        </button>
+                                                        </span>
                                                     </span>
                                                 ))}
                                             </div>
                                             <input
                                                 type="text"
-                                                className="border border-indigo-300 dark:border-indigo-700 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-400 w-full dark:bg-[#23272f] dark:text-foreground transition"
+                                                className="border border-gray-300 dark:border-none rounded-lg px-3 py-1.5 w-full dark:bg-[#23272f] dark:text-foreground transition focus:border-1 focus:border-indigo-400 "
                                                 placeholder="Type a skill and press Enter"
                                                 onKeyDown={(e) => {
                                                     if (e.key === "Enter" || e.key === ",") {
@@ -211,7 +214,7 @@ function SkillData() {
                                         <textarea
                                             maxLength={300}
                                             placeholder="Tell us about yourself (max 300 characters)"
-                                            className="w-full border rounded p-2 focus:ring-2 focus:ring-indigo-400 dark:bg-[#23272f] dark:text-foreground"
+                                            className="w-full border rounded p-2 dark:bg-[#23272f] dark:text-foreground min-h-[160px]"
                                             {...field}
                                         />
                                     </FormControl>
@@ -250,7 +253,7 @@ function SkillData() {
                             <Button
                                 type="button"
                                 variant="outline"
-                                className="w-full border border-indigo-200 dark:border-indigo-700 bg-background dark:bg-[#23272f] text-indigo-700 dark:text-indigo-300 font-semibold py-2 rounded-lg transition hover:bg-indigo-50 dark:hover:bg-indigo-900"
+                                className="w-full border border-indigo-200 dark:border-indigo-700 bg-gray-100 dark:bg-[#23272f] text-indigo-700 dark:text-indigo-300 font-semibold py-2 rounded-lg transition hover:bg-gray-200 dark:hover:bg-indigo-900"
                                 onClick={() => form.reset()}
                                 disabled={isSubmitting}
                             >
@@ -263,17 +266,9 @@ function SkillData() {
                     <Toaster position="top-right" />
                 </div>
             </div>
+            
+            <Footer  />
 
-            <div className="flex flex-col items-start justify-center w-full max-w-lg mt-8">
-                <button
-                    type="button"
-                    onClick={() => router.back()}
-                    className="flex items-center gap-2 mt-6 px-4 py-2 rounded-lg"
-                >
-                    <MdKeyboardBackspace className="text-xl" />
-                    <span className="text-base">Back</span>
-                </button>
-            </div>
         </div>
     )
 }
