@@ -1,18 +1,21 @@
 import type { Handler } from '@netlify/functions';
 import { CohereClient } from "cohere-ai";
 
-// Use environment variable for security in real projects
 const co = new CohereClient({
     token: process.env.COHERE_API_KEY
 });
 
-export const handler: Handler = async () => {
-    const formData = {
-        fullnames: "Pierre Damien",
-        email: "zudanga@gmail.com",
-        skills: ["java", "js", "php", "data analytic"],
-        about: "my simple bio will come here."
-    };
+export const handler: Handler = async (event) => {
+    // Parse form data from the request body
+    let formData;
+    try {
+        formData = JSON.parse(event.body || '{}');
+    } catch (e) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ error: "Invalid JSON in request body" })
+        };
+    }
 
     const response = await co.chat({
         model: "command-r-plus",
@@ -38,6 +41,6 @@ export const handler: Handler = async () => {
 
     return {
         statusCode: 200,
-        body: JSON.stringify(response) // Contains the structured result
+        body: JSON.stringify(response)
     };
 };

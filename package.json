@@ -24,7 +24,8 @@
     "react-typed": "^2.0.12",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.25.75"
+    "zod": "^3.25.75",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
