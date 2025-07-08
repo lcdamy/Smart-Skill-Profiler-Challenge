@@ -1,37 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SMART-SKILL-PROFILER-CHALLENGE
 
-## Getting Started
+## 🧾 Description
 
-First, run the development server:
+This is an application for the Smart Skill Profiler Challenge, built with Next.js. The project features a form where users input their information, receive feedback on their skills, and get an improved bio generated using a Cohere AI model.
 
+## 🔗 Live Preview
+
+If deployed, you can view a live version of this application at:  
+👉 [https://smart-skill-profiler.netlify.app](https://smart-skill-profiler.netlify.app)
+
+## 🚀 Getting Started
+
+Follow these steps to set up and run the project locally.
+
+## ✅ Prerequisite installation
+
+- Node.js v18.18.0 or higher
+
+## 🛠 Installation
+
+1. **Clone the Repository**
+
+    ```bash
+    git clone git@github.com:lcdamy/Smart-Skill-Profiler-Challenge.git
+    cd smart-skill-profiler
+    ```
+
+2. **Install dependencies**
+
+    ```bash
+    npm install
+    ```
+
+## 🏃‍♂️ Running in Development
+
+To start the server in development mode:
+
+1. Copy the example environment file:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+2. Start the server:
+
+    ```bash
+    npm run dev
+    ```
+
+## 🏗️ Building for Production
+
+To build the project for production, run:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> **Note:** The built files will be in the `.next` directory.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📁 Folder Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+smart-skill-profiler/
+├── public/                     # Static assets (images, fonts, etc.)
+├── netlify/                    # Has a serveless function that call Cohere AI API 
+├── src/
+│   ├── app/                    # Application routing
+│   ├── components/             # Reusable UI components
+│   ├── lib/                    # Constants, types, utility functions, and validation
+│   └── store/                  # Zustand state management store
+├── .env                        # Environment variables
+├── .gitignore                  # Git ignore rules
+├── package.json                # Project metadata and dependencies
+└── README.md
+```
 
-## Learn More
+## 👥 Contributors
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Smart-Skill-Profiler-Challenge
+- [Your Name](https://www.linkedin.com/in/your-profile/)
