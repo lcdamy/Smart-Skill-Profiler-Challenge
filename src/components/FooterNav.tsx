@@ -8,7 +8,7 @@ function Footer() {
     const footerLocation = useFooterStore((state) => state.location || 'take-test');
 
     return (
-        <div className="flex flex-col justify-between sm:flex-row gap-4 mt-8 w-full max-w-lg mx-auto mb-2">
+        <div className="flex flex-row justify-between gap-4 mt-8 w-full max-w-lg mx-auto mb-2">
             <button
                 type="button"
                 onClick={() => router.back()}
@@ -20,7 +20,7 @@ function Footer() {
                     {footerLocation === 'result-test' ? 'Start Over' : 'Back'}
                 </span>
             </button>
-            {footerLocation === 'result-test' as typeof footerLocation && (
+            {footerLocation === 'result-test' && (
                 <button
                     type="button"
                     className="flex items-center rounded-lg gap-2 button-secondary"
