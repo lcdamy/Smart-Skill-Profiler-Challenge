@@ -1,11 +1,10 @@
 "use client";
-import type { Metadata } from "next";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import Navbar from "@/components/Navbar";
 import { Loader2Icon } from 'lucide-react'
-import { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
