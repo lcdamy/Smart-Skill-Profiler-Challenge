@@ -109,9 +109,10 @@ function SkillData() {
             transition={{ duration: 0.7, type: "spring", stiffness: 80 }}
             id="skill-data"
             className="flex flex-col items-center justify-center min-h-screen px-4 bg-background text-foreground transition-colors">
-            <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors mt-8">
-                <h1 className="flex items-center justify-center gap-2 text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 text-center mb-6">
-                    <ImProfile /> <span>Profile Details</span>
+            <Footer />
+            <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors my-4">
+                <h1 className="flex justify-left gap-2 text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 text-center mb-6">
+                    <span className="relative top-1"><ImProfile /></span> <span>Profile Details</span>
                 </h1>
                 <div className="mb-6 text-center">
                     <p className="text-secondary text-xs">
@@ -170,7 +171,7 @@ function SkillData() {
                                 <FormItem>
                                     <FormLabel className="text-indigo-700 dark:text-indigo-400">Skills</FormLabel>
                                     <FormControl>
-                                        <div>
+                                        <div className="relative">
                                             <div className="flex flex-wrap gap-2 mb-2">
                                                 {field.value.map((skill: string, idx: number) => (
                                                     <span
@@ -194,23 +195,45 @@ function SkillData() {
                                                     </span>
                                                 ))}
                                             </div>
-                                            <input
-                                                type="text"
-                                                className="border border-gray-300 dark:border-none rounded-lg px-3 py-1.5 w-full dark:bg-[#23272f] dark:text-foreground transition focus:border-1 focus:border-indigo-400 "
-                                                placeholder="Type a skill and press Enter"
-                                                onKeyDown={(e) => {
-                                                    if (e.key === "Enter" || e.key === ",") {
-                                                        e.preventDefault()
-                                                        const input = (e.target as HTMLInputElement).value.trim()
-                                                        if (input && !field.value.includes(input)) {
-                                                            const newSkills = [...field.value, input]
-                                                            field.onChange(newSkills)
-                                                            form.trigger("skills")
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    className="border border-gray-300 dark:border-none rounded-lg px-3 py-1.5 w-full dark:bg-[#23272f] dark:text-foreground transition focus:border-1 focus:border-indigo-400 pr-16"
+                                                    placeholder="Type a skill and press Enter"
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === "Enter" || e.key === ",") {
+                                                            e.preventDefault()
+                                                            const input = (e.target as HTMLInputElement).value.trim()
+                                                            if (input && !field.value.includes(input)) {
+                                                                const newSkills = [...field.value, input]
+                                                                field.onChange(newSkills)
+                                                                form.trigger("skills")
+                                                            }
+                                                            (e.target as HTMLInputElement).value = ""
                                                         }
-                                                        (e.target as HTMLInputElement).value = ""
-                                                    }
-                                                }}
-                                            />
+                                                    }}
+                                                    id="skill-input"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-3 py-1 rounded-lg text-xs font-semibold transition"
+                                                    onClick={() => {
+                                                        const inputEl = document.getElementById("skill-input") as HTMLInputElement | null
+                                                        if (inputEl) {
+                                                            const input = inputEl.value.trim()
+                                                            if (input && !field.value.includes(input)) {
+                                                                const newSkills = [...field.value, input]
+                                                                field.onChange(newSkills)
+                                                                form.trigger("skills")
+                                                            }
+                                                            inputEl.value = ""
+                                                        }
+                                                    }}
+                                                    tabIndex={0}
+                                                >
+                                                    Add
+                                                </button>
+                                            </div>
                                         </div>
                                     </FormControl>
                                     <FormDescription className="text-xs text-secondary mt-1">
@@ -246,6 +269,15 @@ function SkillData() {
 
                         <div className="flex gap-4">
                             <Button
+                                type="button"
+                                variant="outline"
+                                className="w-full border border-indigo-200 dark:border-indigo-700 bg-gray-100 dark:bg-[#23272f] text-indigo-700 dark:text-indigo-300 font-semibold py-2 rounded-lg transition hover:bg-gray-200 dark:hover:bg-indigo-900"
+                                onClick={() => form.reset()}
+                                disabled={isSubmitting}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
                                 type="submit"
                                 className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg transition dark:bg-indigo-500 dark:hover:bg-indigo-600"
                                 disabled={isSubmitting}
@@ -267,16 +299,6 @@ function SkillData() {
                                     "Submit"
                                 )}
                             </Button>
-
-                            <Button
-                                type="button"
-                                variant="outline"
-                                className="w-full border border-indigo-200 dark:border-indigo-700 bg-gray-100 dark:bg-[#23272f] text-indigo-700 dark:text-indigo-300 font-semibold py-2 rounded-lg transition hover:bg-gray-200 dark:hover:bg-indigo-900"
-                                onClick={() => form.reset()}
-                                disabled={isSubmitting}
-                            >
-                                Cancel
-                            </Button>
                         </div>
                     </form>
                 </Form>
@@ -284,9 +306,6 @@ function SkillData() {
                     <Toaster position="top-right" />
                 </div>
             </div>
-
-            <Footer />
-
         </motion.div>
     )
 }

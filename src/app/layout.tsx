@@ -5,14 +5,11 @@ import "@/app/globals.css";
 import Navbar from "@/components/Navbar";
 import { Loader2Icon } from 'lucide-react'
 import { useState, useEffect } from "react"
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { Outfit } from "next/font/google";
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -31,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfit.variable} font-sans antialiased`}
       >
         {loading ? (
           <div className="min-h-screen flex flex-col items-center justify-center">

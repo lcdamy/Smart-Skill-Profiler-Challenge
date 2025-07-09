@@ -6,7 +6,6 @@ import { CgProfile } from "react-icons/cg";
 import { Separator } from "@/components/ui/separator"
 import { motion } from 'framer-motion'
 
-
 function ResultTest() {
     // Get the summary and suggested skills from the result store
     const summary = useResultStore((state) => state.summary);
@@ -25,12 +24,13 @@ function ResultTest() {
             id="result-test"
             className="flex flex-col items-center justify-center min-h-screen px-4 bg-background text-foreground transition-colors"
         >
-            <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors mt-8">
-                <h1 className="flex items-center justify-center gap-2 text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 text-center mb-6">
-                    <CgProfile />
+            <Footer />
+            <div className="container-surface shadow-2xl rounded-2xl p-8 w-full max-w-lg transition-colors my-4">
+                <h1 className="flex justify-left gap-2 text-3xl font-extrabold text-indigo-700 dark:text-indigo-400 text-center mb-6">
+                    <CgProfile className="relative top-1" />
                     <span>
                         Profile Analysis
-                        <span className="hidden sm:inline text-base font-normal text-indigo-500 dark:text-indigo-300">(Cohere-AI Result)</span>
+                        <span className="hidden sm:inline text-sm font-normal text-indigo-500 dark:text-indigo-300"> (Cohere-AI Result)</span>
                     </span>
                 </h1>
                 <h3 className="font-semibold text-xl mb-2.5">
@@ -57,7 +57,7 @@ function ResultTest() {
                     ))}
                 </ol>
             </div>
-            <Footer />
+
         </motion.div>
     );
 }

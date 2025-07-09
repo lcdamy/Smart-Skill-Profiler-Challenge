@@ -2,6 +2,7 @@ import { MdKeyboardBackspace } from "react-icons/md"
 import { useRouter } from "next/navigation"
 import { CiShare2 } from "react-icons/ci";
 import { useFooterStore } from "@/store/footerStore";
+import toast, { Toaster } from 'react-hot-toast';
 
 function Footer() {
     const router = useRouter()
@@ -25,11 +26,14 @@ function Footer() {
                     type="button"
                     className="flex items-center rounded-lg gap-2 button-secondary"
                     aria-label="Share"
+                    onClick={() => toast("Share your results with others!")}
                 >
                     <CiShare2 className="text-2xl" />
                     <span className="text-base">Share</span>
                 </button>
             )}
+            <Toaster position="bottom-right" reverseOrder={false} />
+
         </div>
     );
 }

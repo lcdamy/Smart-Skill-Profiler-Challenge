@@ -46,7 +46,7 @@ function Navbar() {
         >
           Scope
         </span>
-        <span className="text-lg font-bold text-pink-500 align-super">.</span>
+        <span className="text-6xl font-bold text-pink-500 align-super relative" style={{ top: '-10px' }}>.</span>
       </div>
     </Link>
     <button
