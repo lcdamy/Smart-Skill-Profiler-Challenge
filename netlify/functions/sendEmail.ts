@@ -1,9 +1,24 @@
 // netlify/functions/sendEmail.ts
-
 import { Handler } from '@netlify/functions'
 import nodemailer from 'nodemailer'
 
+const headers = {
+  'Access-Control-Allow-Origin': '*', // Or specify your domain instead of '*'
+  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+}
+
+
+
 const handler: Handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: 'OK',
+    }
+  }
+
   try {
     const { to, subject, text, html } = JSON.parse(event.body || '{}')
 
